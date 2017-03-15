@@ -1,0 +1,20 @@
+\* Problem: maksymalne koło wpisane w wielokąt *\
+
+Maximize
+obj: r
+
+Subject To
+2p-q-2.23r>=0
+p+3q-3.16r>=7
+3p-q-3.60r<=0
+
+Bounds
+p>=-100
+q>=-100
+
+Generals
+p
+q
+r
+
+End
