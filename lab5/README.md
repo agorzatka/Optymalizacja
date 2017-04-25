@@ -25,6 +25,23 @@ ROZWIĄZANIE POCZĄTKOWE dla wczytanego zadania:
 [ 37.66666667   0.16666667   7.        ]
 
 
+test 2
+
+dane w zadaniu
+
+[[ 4  2 -1]
+
+ [ 3 -2  1]
+ 
+ [ 7 -8  2]]
+ 
+[ 7  5 11]
+
+ROZWIĄZANIE POCZĄTKOWE dla wczytanego zadania:
+
+[ 1.71428571  0.17857143  0.21428571]
+
+
 zad4
 
 dane w zadaniu
