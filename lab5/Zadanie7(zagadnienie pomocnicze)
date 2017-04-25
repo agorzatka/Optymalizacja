@@ -34,9 +34,13 @@ def zad7(A, b):
     wyn=scipy.optimize.linprog(c, A_eq=C, b_eq=b, method='simplex', callback=None, options=None)
     
     print 'ROZWIĄZANIE POCZĄTKOWE dla wczytanego zadania:'
-    print wyn.x
+    #obcięcie wektora, żeby pozbyć się dodanych współrzędnych
+    rozw=wyn.x
+    pocz=liczba_kolumn
+    kon=len(C[0])
+    print np.delete(rozw,np.s_[pocz:kon],0)
 
-print "zad5"
+print "zad6"
 zad7(np.array([[8,3,-5,1], [3,1,-2,-1]]), np.array([4,1]));
 
 
