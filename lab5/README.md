@@ -21,6 +21,8 @@ ROZWIĄZANIE POCZĄTKOWE dla wczytanego zadania:
 [ 1.  1.  0.]
 
 
+
+
 zad6
 
 dane w zadaniu
