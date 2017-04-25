@@ -7,6 +7,24 @@ Na końcu kodu są zapisane dane dla zadania szóstego.
 
 Poniżej przestawiam przykładowe testy:
 
+
+test 1
+
+dane w zadaniu
+
+[[ 1  2 -5]
+
+ [ 1 -4 -5]
+ 
+ [ 1 -4 -6]]
+ 
+[3 2 5]
+
+ROZWIĄZANIE POCZĄTKOWE dla wczytanego zadania:
+
+[ 37.66666667   0.16666667   7.        ]
+
+
 zad4
 
 dane w zadaniu
