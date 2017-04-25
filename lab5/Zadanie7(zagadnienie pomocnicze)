@@ -8,29 +8,36 @@ import sys
 A=np.array([[8,3,-5,1], [3,1,-2,-1]]);
 b=np.array([4,1])
 
-#zczytywanie wymiarów macierzy i wektora
-liczba_wierszy=len(A)
-liczba_kolumn=len(A[0])
-dl_wektora=len(b)
+def zad7(A, b):
+    #zczytywanie wymiarów macierzy i wektora
+    liczba_wierszy=len(A)
+    liczba_kolumn=len(A[0])
+    dl_wektora=len(b)
+    
+    # ewentualna zamiana znaków
+    for p in range(liczba_wierszy):
+        if b[p]<0:
+            for q in range(liczba_kolumn):
+                 A[p][q]=-A[p][q]
+            b[p]=-b[p]
 
-# ewentualna zamiana znaków
-for p in range(liczba_wierszy):
-    if b[p]<0:
-        for q in range(liczba_kolumn):
-             A[p][q]=-A[p][q]
-        b[p]=-b[p]
+    # tworzenie macierzy opisującej równanie poszerzone o nowe zmienne        
+    I=np.identity(liczba_wierszy)           
+    C=np.hstack((A,I))
+    
+    
+    #współczynniki funkcji do minimalizacji
+    p=np.zeros(liczba_kolumn);
+    r=np.ones(liczba_wierszy);
+    c=np.hstack((p,r));
+    
+    wyn=scipy.optimize.linprog(c, A_eq=C, b_eq=b, method='simplex', callback=None, options=None)
+    
+    print 'ROZWIĄZANIE POCZĄTKOWE dla wczytanego zadania:'
+    print wyn.x
 
-# tworzenie macierzy opisującej równanie poszerzone o nowe zmienne        
-I=np.identity(liczba_wierszy)           
-C=np.hstack((A,I))
+print "zad5"
+zad7(np.array([[8,3,-5,1], [3,1,-2,-1]]), np.array([4,1]));
 
 
-#współczynniki funkcji do minimalizacji
-p=np.zeros(liczba_kolumn);
-r=np.ones(liczba_wierszy);
-c=np.hstack((p,r));
-
-wyn=scipy.optimize.linprog(c, A_eq=C, b_eq=b, method='simplex', callback=None, options=None)
-
-print 'ROZWIĄZANIE POCZĄTKOWE:'
-print wyn.x
+    
