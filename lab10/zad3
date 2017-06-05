@@ -1,0 +1,17 @@
+import numpy as np 
+import numpy.linalg 
+
+
+A=np.array([[0,1,0,1,0,0], [1,0,0,0,0,0], [0,0,0,0,1,1],[1,0,0,0,0,0],[0,0,1,0,0,0],[0,0,1,0,0,0]]); 
+print A 
+max=0
+
+def znajdz_wierzcholki(A):
+    #zmienna zczytujaca ilosc kolumn, ktore oznaczaja krawedzie
+    K=len(A[0])
+    #zmienna, ktora bedzie zapisywac ile krawedzi jest juz oznakowanych
+    s=0
+    #tablica otrzymujaca zbierajaca wierzchołki
+    B=np.array
+    while (s < K):
+        if tab
