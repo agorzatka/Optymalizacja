@@ -4,14 +4,44 @@ import numpy.linalg
 
 A=np.array([[0,1,0,1,0,0], [1,0,0,0,0,0], [0,0,0,0,1,1],[1,0,0,0,0,0],[0,0,1,0,0,0],[0,0,1,0,0,0]]); 
 print A 
-max=0
+
+def szukaj_wierzcholka(A, i, B):
+    j=0
+    while A[j][i]==0:
+        print A[j][i]
+        j+=1
+    if i==0:
+        B[i]=j+1
+    else:
+        k=0
+        l=len(B[0])
+        print l
+        while (k<i and k<l and B[k]!=j+1):
+            k+=1
+        if k==l:
+            if B[k-1]!=j+1:
+                B=np.insert(B,k,j+1)
+        else:
+            if k==i:
+                if B[k-1]!=j+1:
+                    B=np.insert(B,k,j+1)
+            else:
+                if B[k]!=j+1:
+                    np.insert(B,k+1,j+1)
+    return B
 
 def znajdz_wierzcholki(A):
     #zmienna zczytujaca ilosc kolumn, ktore oznaczaja krawedzie
     K=len(A[0])
+    print K
     #zmienna, ktora bedzie zapisywac ile krawedzi jest juz oznakowanych
     s=0
     #tablica otrzymujaca zbierajaca wierzchołki
-    B=np.array
-    while (s < K):
-        if tab
+    B=np.array([0])
+    while s < K:
+        print s
+        B=szukaj_wierzcholka(A, s, B)
+        print B
+        s+=1
+    
+znajdz_wierzcholki(A)
