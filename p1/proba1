@@ -1,0 +1,28 @@
+
+#największy wspołczynnik funkcji celu
+
+#dwie funkcje pomocnicze
+#wybór zmiennych bazowych
+def potencjalne_zmienne(ss, z):
+	return list(ss.nonbasic_variables()).index(z)
+#wszystkie współczynniki w funkcji celu zmiennych wcześniej wybranych
+def coef(ss, z):
+    return ss.objective_coefficients()[potencjalne_zmienne(ss,z)]
+# Wybór zmiennej o największym wspołczynniku funkcji celu
+def largest_coefficient(self):
+	return max(self.possible_entering(), key=(lambda x: coef(self, x) ) )
+	
+def random_edge(self):
+	return list(self.possible_entering())[randrange(len(self.possible_entering()))]
+    
+#
+# Wybor funkcji pivot
+#
+
+def my_entering(self):
+    print "wszystkie mozliwe: ", self.possible_entering(); print ""
+    a=largest_coefficient(self)
+    print "wybrana: ", a; print
+    b=random_edge(self)
+    print "random: ", b; print
+    return a
