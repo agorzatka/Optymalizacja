@@ -12,8 +12,12 @@ def coef(ss, z):
 def largest_coefficient(self):
 	return max(self.possible_entering(), key=(lambda x: coef(self, x) ) )
 	
-def random_edge(self):
+#wybór losowy zmiennej
+def random_edge_entering(self):
 	return list(self.possible_entering())[randrange(len(self.possible_entering()))]
+
+def random_edge_leaving(self):
+	return list(self.possible_leaving())[randrange(len(self.possible_leaving()))]
     
 #
 # Wybor funkcji pivot
@@ -23,6 +27,6 @@ def my_entering(self):
     print "wszystkie mozliwe: ", self.possible_entering(); print ""
     a=largest_coefficient(self)
     print "wybrana: ", a; print
-    b=random_edge(self)
+    b=random_edge_entering(self)
     print "random: ", b; print
     return a
