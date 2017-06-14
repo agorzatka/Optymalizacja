@@ -1,0 +1,23 @@
+
+def potencjalne_zmienne(ss, z):
+	return list(ss.possible_entering()).index(z)
+
+#wszystkie współczynniki w funkcji celu zmiennych wcześniej wybranych
+def coef(ss, z):
+    return ss.objective_coefficients()[potencjalne_zmienne(ss,z)]
+
+# Wybór zmiennej o największym wspołczynniku funkcji celu
+def largest_coefficient(self):
+    return max(self.possible_entering(), key=(lambda x: coef(self, x) ) )
+
+#wybór zmiennych bazowych
+def potencjalne_zmienne_b(ss, z):
+	return ss.possible_leaving().index(z)
+
+#wszystkie współczynniki w funkcji celu zmiennych wcześniej wybranych
+def coef_b(ss, z):
+    return ss.objective_coefficients()[potencjalne_zmienne_b(ss,z)]
+
+# Wybór zmiennej o największym wspołczynniku funkcji celu
+def largest_coefficient_leaving(self):
+    return max(self.possible_leaving(), key=(lambda x: coef_b(self, x) ) )
