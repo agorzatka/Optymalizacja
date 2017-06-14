@@ -1,0 +1,36 @@
+def funkcja_dodatkowa_entering(self):
+    dl= len(self.possible_entering())
+    l= list(self.possible_entering())
+    print l
+    if dl==0:
+        maks=l[0]
+    else:
+        a=l[randrange(0,dl)]
+        print a
+        b=l[randrange(0,dl)]
+        print b
+        c=l[randrange(0,dl)]
+        print c
+        print "wybór maksymalnej"
+        maks=max(a,b,c)
+    print maks
+    return maks
+
+def funkcja_dodatkowa_leaving(self):
+    print "jesten"
+    dl= len(self.possible_leaving())
+    l= list(self.possible_leaving())
+    print l
+    if dl==0:
+        maks=l[0]
+    else:
+        a=l[randrange(0,dl)]
+        print a
+        b=l[randrange(0,dl)]
+        print b
+        c=l[randrange(0,dl)]
+        print c
+        print "wybór maksymalnej"
+        maks=max(a,b,c)
+    print maks
+    return maks
