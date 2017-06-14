@@ -1,0 +1,11 @@
+def bland_rule_entering(self):
+    values = self.possible_entering()
+    print "the smallest index of entering variable:"
+    min_indeks = len(values)
+    k=values[0]
+    print values
+    for value in values:
+        if min_indeks > values[value].index:
+            min_indeks=values[value].index
+            k=values[value]
+    return k
