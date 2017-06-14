@@ -1,0 +1,25 @@
+#Wybór zmiennej o najmniejszymw spółczynniku w funkcji celu
+
+#wybór mozliwych zmiennych
+def p_z_e(ss, z):
+	return list(ss.possible_entering()).index(z)
+
+#współczynnik dla danej zmiennej
+def c_e(ss, z):
+    return ss.objective_coefficients()[p_z_e(ss,z)]
+
+# Wybór zmiennej o najmniejszym wspołczynniku funkcji celu
+def smallest_coefficient_entering(self):
+    return min(self.possible_entering(), key=(lambda x: c_e(self, x) ) )
+
+#zmienne wychodzące
+def p_z_l(ss, z):
+	return ss.possible_leaving().index(z)
+
+#współczynnik w funckji celu dla danej zmiennej wchodzącej
+def c_l(ss, z):
+    return ss.objective_coefficients()[p_z_l(ss,z)]
+
+# Wybór zmiennej o najmniejszym wspołczynniku funkcji celu
+def smallest_coefficient_leaving(self):
+    return min(self.possible_leaving(), key=(lambda x: c_l(self, x) ) )
