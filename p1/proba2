@@ -1,0 +1,13 @@
+#dwie funkcje pomocnicze dla zmiennych wychodzących
+
+#wybór zmiennych bazowych
+def potencjalne_zmienne_b(ss, z):
+	return list(ss.basic_variables()).index(z)
+
+#wszystkie współczynniki w funkcji celu zmiennych wcześniej wybranych
+def coef_b(ss, z):
+    return ss.objective_coefficients()[potencjalne_zmienne_b(ss,z)]
+
+# Wybór zmiennej o największym wspołczynniku funkcji celu
+def largest_coefficient_leaving(self):
+	return max(self.possible_leaving(), key=(lambda x: coef_b(self, x) ) )
