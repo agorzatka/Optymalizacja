@@ -75,24 +75,24 @@ class Node:
         for c in self.getChilds(): #i to samo dla każdego dziecka
             c.printTree(intend+1)  #ze zwiększonym wcięciem
 
-def przeszukaj(ojciec, liczba_pracownikow, tab):
+def przeszukaj_WSA(ojciec, liczba_pracownikow, tab):
     #przeszukiwanie w tablicy dzieci dla ojca
     for j in range(liczba_pracownikow):
         if tab[j][0]==ojciec.name and j!=ojciec.name:
-            print "WESZLISMY"
+            #print "WESZLISMY"
             drzewo=Node()
             drzewo.__init__(j, ojciec, tab[j][2])
             ojciec.addChild(drzewo)
             print "nowy wezeł"
             print drzewo.name
-            print "minimum"
-            print drzewo.min_dep
-            przeszukaj(drzewo, liczba_pracownikow, tab)
+            #print "minimum"
+            #print drzewo.min_dep
+            przeszukaj_WSA(drzewo, liczba_pracownikow, tab)
     return ojciec
             
             
 #funkcja tworząca drzewo z tablicy
-def create_tree(liczba_pracownikow, tab):
+def create_tree_WSA(liczba_pracownikow, tab):
     #wyszukanie szefa i utworzenie drzewa
     drzewo1=Node()
     for i in range(liczba_pracownikow):
@@ -100,12 +100,46 @@ def create_tree(liczba_pracownikow, tab):
             szef=i
             a=tab[i][2]
             drzewo1.__init__(szef,0, a)
-    print "nazwa wierzchołka"
+    print "szef WSA"
     print drzewo1.name
-    print "minimalna liczba pracowników w departamencie szefa"
-    print drzewo1.min_dep
-    przeszukaj(drzewo1, liczba_pracownikow, tab)
+    #print "minimalna liczba pracowników w departamencie szefa"
+    #print drzewo1.min_dep
+    przeszukaj_WSA(drzewo1, liczba_pracownikow, tab)
+    return drzewo1
+
+def przeszukaj_union(ojciec, liczba_pracownikow, tab):
+    #przeszukiwanie w tablicy dzieci dla ojca
+    for j in range(liczba_pracownikow):
+        if tab[j][1]==ojciec.name and j!=ojciec.name:
+            print "WESZLISMY"
+            drzewo=Node()
+            drzewo.__init__(j, ojciec, tab[j][3])
+            ojciec.addChild(drzewo)
+            print "nowy wezeł"
+            print drzewo.name
+            #print "minimum"
+            #print drzewo.min_dep
+            przeszukaj_union(drzewo, liczba_pracownikow, tab)
+    return ojciec
+            
+            
+#funkcja tworząca drzewo z tablicy
+def create_tree_union(liczba_pracownikow, tab):
+    print "UNION"
+    #wyszukanie szefa i utworzenie drzewa
+    drzewo1=Node()
+    for i in range(liczba_pracownikow):
+        if tab[i][1]==i:
+            szef=i
+            a=tab[i][3]
+            drzewo1.__init__(szef,0, a)
+            print "szef union"
+            print drzewo1.name
+    przeszukaj_union(drzewo1, liczba_pracownikow, tab)
+    #print "minimalna liczba pracowników w departamencie szefa"
+    #print drzewo1.min_dep
     return drzewo1
 
 
-A=create_tree(n,tab)
+create_tree_WSA(n,tab)
+create_tree_union(n,tab)
