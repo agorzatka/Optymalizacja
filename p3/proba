@@ -1,13 +1,14 @@
 import numpy as np 
 import numpy.linalg 
-tab=np.array([[1,0,1,2], [2,0,1,2], [2,1,2,0], [1,3,0,0]])
-n=4
+tab=np.array([[1,0,1,2], [2,0,1,2], [2,1,2,0], [2,1,0,1], [1,3,0,0]])
+print tab
+n=5
 
 class Node:
     def __init__(self, name="Node", parent=None, minimal=Integer):
         self.__parent__=parent
         self.__childs__=[]
-        self.min_w_dep=minimal
+        self.min_dep=minimal
         self.name=name #nazwa
     def isRoot(self): #jest korzeniem, czy nie posiada rodzica
         if self.__parent__==None: return True
@@ -73,22 +74,38 @@ class Node:
             print(p+"-"+self.name) #nie posiada, -
         for c in self.getChilds(): #i to samo dla każdego dziecka
             c.printTree(intend+1)  #ze zwiększonym wcięciem
+
+def przeszukaj(ojciec, liczba_pracownikow, tab):
+    #przeszukiwanie w tablicy dzieci dla ojca
+    for j in range(liczba_pracownikow):
+        if tab[j][0]==ojciec.name and j!=ojciec.name:
+            print "WESZLISMY"
+            drzewo=Node()
+            drzewo.__init__(j, ojciec, tab[j][2])
+            ojciec.addChild(drzewo)
+            print "nowy wezeł"
+            print drzewo.name
+            print "minimum"
+            print drzewo.min_dep
+            przeszukaj(drzewo, liczba_pracownikow, tab)
+    return ojciec
+            
             
 #funkcja tworząca drzewo z tablicy
 def create_tree(liczba_pracownikow, tab):
-    #wyszukanie szefa i utworzenie tablicy
+    #wyszukanie szefa i utworzenie drzewa
     drzewo1=Node()
     for i in range(liczba_pracownikow):
         if tab[i][0]==i:
             szef=i
-            print "szef to pracownik"
-            print szef
             a=tab[i][2]
             drzewo1.__init__(szef,0, a)
+    print "nazwa wierzchołka"
+    print drzewo1.name
     print "minimalna liczba pracowników w departamencie szefa"
-    print drzewo1.min_w_dep
-    
+    print drzewo1.min_dep
+    przeszukaj(drzewo1, liczba_pracownikow, tab)
     return drzewo1
 
 
-create_tree(n,tab)
+A=create_tree(n,tab)
