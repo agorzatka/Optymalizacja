@@ -64,9 +64,9 @@ class Node:
             if i>1: p+="    +"
             else: p+="    ";
             i-=1 #generowanie wcięcia
-    if(self.isNode()):
-        print(p+"+"+self.name) #jeśli ma dzieci, rysuje +
-    else:
-        print(p+"-"+self.name) #nie posiada, -
-    for c in self.getChilds(): #i to samo dla każdego dziecka
-        c.printTree(intend+1)  #ze zwiększonym wcięciem
+        if(self.isNode()):
+            print(p+"+"+self.name) #jeśli ma dzieci, rysuje +
+        else:
+            print(p+"-"+self.name) #nie posiada, -
+        for c in self.getChilds(): #i to samo dla każdego dziecka
+            c.printTree(intend+1)  #ze zwiększonym wcięciem
