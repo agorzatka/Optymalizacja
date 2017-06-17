@@ -78,12 +78,17 @@ class Node:
 def create_tree(liczba_pracownikow, tab):
     #wyszukanie szefa i utworzenie tablicy
     drzewo1=Node()
-    for i in range(4):
+    for i in range(liczba_pracownikow):
         if tab[i][0]==i:
             szef=i
+            print "szef to pracownik"
             print szef
             a=tab[i][2]
-            Node.__init__(szef, "drzewo1", None, a)
+            drzewo1.__init__(szef,0, a)
+    print "minimalna liczba pracowników w departamencie szefa"
+    print drzewo1.min_w_dep
+    
     return drzewo1
+
 
 create_tree(n,tab)
