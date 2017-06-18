@@ -141,7 +141,7 @@ def childs(wezel, liczba_pracownikow):
 
 def suma(drzewo, p):
     s=len(drzewo.getChilds())
-    if s==0:
+    if s==0 and p==0:
         print 'x'+ str(drzewo.name),
     for i in range(s):
         if p==0:
@@ -150,9 +150,7 @@ def suma(drzewo, p):
         print ("x{}".format(drzewo.getChilds()[i].name)),
         p=1
     if drzewo.isNode()==True:
-        s=len(drzewo.getChilds())
-        for i in range(s):
-            suma(drzewo.getChilds()[i],1)
+        suma(drzewo.getChilds()[0],1)
     return 0
 
 def contraint(drzewo):
