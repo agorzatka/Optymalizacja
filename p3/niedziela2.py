@@ -123,7 +123,7 @@ def create_tree_union(liczba_pracownikow, tab):
     return drzewo1
 
 def bounds(liczba_pracownikow):
-    print "Bounds:"
+    print "Bounds"
     for i in range(liczba_pracownikow):
         a=str(i)
         print '0<=x' + a + '<=1'
