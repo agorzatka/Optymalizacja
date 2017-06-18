@@ -30,7 +30,8 @@ class Node:
                                 # usunąć je od poprzedniego rodzica
         self.__childs__.append(newChild)
         newChild.__parent__=self
-    
+ 
+#funkcja pomocnicza dla funkcji tworzącej drzewo
 def przeszukaj_WSA(ojciec, liczba_pracownikow, tab):
     #przeszukiwanie w tablicy dzieci dla ojca
     for j in range(liczba_pracownikow):
@@ -76,19 +77,14 @@ def create_tree_union(liczba_pracownikow, tab):
             drzewo1.__init__(szef,0, a)
     przeszukaj_union(drzewo1, liczba_pracownikow, tab)
     return drzewo1
-
+#Bounds
 def bounds(liczba_pracownikow):
     print "Bounds"
     for i in range(liczba_pracownikow):
         a=str(i)
         print '0<=x' + a + '<=1'
-        
 
-def childs(wezel, liczba_pracownikow):
-    A=np.zeros(liczba_pracownikow)
-    print A
-
-
+#funkcja zwracająca tablice zer i jedynek, na podstawie której piszemy ograniczenia
 def suma(drzewo, p, Z):
     s=len(drzewo.getChilds())
     if s==0:
@@ -100,7 +96,7 @@ def suma(drzewo, p, Z):
         for i in range(s):
             Z=suma(drzewo.getChilds()[i],1,Z)
     return Z
-
+#funkcja wypisująca dla korzenia ograniczenia
 def contraint(drzewo, liczba_pracownikow):
     Z=[0]*liczba_pracownikow
     S=suma(drzewo,0,Z)
@@ -116,7 +112,7 @@ def contraint(drzewo, liczba_pracownikow):
     
     print '>=', drzewo.min_dep
     return 0
-
+#funkcja wypisują wszystkie oigraniczenia dla każdego korzenia
 def contraints(drzewo, liczba_pracownikow):
     contraint(drzewo, liczba_pracownikow)
     if drzewo.isNode()==True:
@@ -124,7 +120,7 @@ def contraints(drzewo, liczba_pracownikow):
         for i in range(s):
             contraints(drzewo.getChilds()[i], liczba_pracownikow)
     return 0
-
+#wypisuje funkcje, którą chcemy zminimalizować
 def minimal(liczba_pracownikow):
     print "Minimize"
     for i in range(liczba_pracownikow-1):
@@ -132,7 +128,7 @@ def minimal(liczba_pracownikow):
     a=liczba_pracownikow-1
     print 'x'+ str(a)
         
-
+#problem liniowy dla WSA
 def linear_problem_WSA(tab, liczba_pracownikow):
     print "Problem liniowy dla WSA"
     A=create_tree_WSA(liczba_pracownikow,tab)
@@ -144,7 +140,7 @@ def linear_problem_WSA(tab, liczba_pracownikow):
     print
     bounds(liczba_pracownikow)
     return 0
-
+#problem liniowy dla union
 def linear_problem_union(tab, liczba_pracownikow):
     print "Problem liniowy dla union"
     B=create_tree_union(liczba_pracownikow,tab)
