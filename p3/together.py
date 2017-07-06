@@ -174,12 +174,32 @@ def bounds(liczba_pracownikow, tab1, tab2):
     print
     bound_przeplyw(1, tab2)
     
+#Generals
+def general_przeplyw(drzewo, ojciec):
+    if ojciec.__parent__!=ojciec.name:
+        print "x_{1}_{0}_{2}".format(ojciec.name, ojciec.__parent__.name, drzewo)
+    A=ojciec.getChilds()
+    l=len(A)
+    for i in range(l):
+        general_przeplyw(drzewo, A[i])
+
+
+def generals(liczba_pracownikow, tab1, tab2):
+    print
+    print "Generals"
+    for i in range(liczba_pracownikow):
+        a=str(i)
+        print 'x' + a
+    general_przeplyw(0, tab1)
+    general_przeplyw(1, tab2)
+    
 def problem_liniowy(n, tab):
     A=create_tree_WSA(n, tab)
     B=create_tree_union(n, tab)
     minimal(n)
     subject_to(A, B)
     bounds(n, A, B)
+    generals(n, A, B)
     print "End"
     
 problem_liniowy(n, tab)
