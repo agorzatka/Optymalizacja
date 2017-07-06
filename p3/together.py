@@ -117,9 +117,9 @@ def condition2(drzewo, ojciec):
     if ojciec.__parent__==ojciec.name:
         A=ojciec.getChilds()
         l=len(A)
-        for i in range(l-1):
+        for i in range(l):
             print "x_{0}_{1}_{2} +".format(ojciec.name, A[i].name, drzewo),
-        print "x_{0}_{1}_{2} >= {3}".format(ojciec.name, A[l-1].name, drzewo, ojciec.min_dep)
+        print "x_{0}>= {1}".format(ojciec.name, ojciec.min_dep)
     else:
         if ojciec.isNode()==True:
             print "x{0}_{1}_{2}".format(ojciec.__parent__.name, ojciec.name, drzewo),
@@ -152,10 +152,18 @@ def subject_to(tab1, tab2):
 
     
 #Bounds
+def zlicz(ojciec):
+    A=ojciec.getChilds()
+    l=len(A)
+    sum=0
+    for i in range(l):
+        sum+=zlicz(A[i])
+    k=ojciec.min_dep+sum
+    return k
 
 def bound_przeplyw(drzewo, ojciec):
     if ojciec.__parent__!=ojciec.name:
-        print "0 <= x_{1}_{0}_{2} <= {3}".format(ojciec.name, ojciec.__parent__.name, drzewo, ojciec.__parent__.min_dep)
+        print "0 <= x_{1}_{0}_{2} <= {3}".format(ojciec.name, ojciec.__parent__.name, drzewo, zlicz(ojciec))
 
     A=ojciec.getChilds()
     l=len(A)
