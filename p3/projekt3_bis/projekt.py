@@ -1,5 +1,7 @@
 import numpy as np 
 import numpy.linalg 
+tab=np.array([[1,0,1,2], [2,0,1,2], [2,1,2,0], [2,1,0,1], [1,3,0,0]])
+n=5
 
 class Node:
     def __init__(self, name="Node", parent=None, minimal=Integer):
@@ -96,14 +98,14 @@ def condition_1(drzewo, ojciec):
         przeplyw1(drzewo, ojciec)
     print "x{0} >= {1}".format(ojciec.name, ojciec.min_dep),
     
-def condition1_all(drzewo, ojciec):
+def Capacity_constraints(drzewo, ojciec):
     condition_1(drzewo, ojciec)
     if ojciec.isNode()==True:
         A=ojciec.getChilds()
         l=len(A)
         for i in range(l):
             print 
-            condition1_all(drzewo, A[i])
+            Capacity_constraints(drzewo, A[i])
             
 def przeplyw2(drzewo, ojciec):
     A=ojciec.getChilds()
@@ -124,29 +126,29 @@ def condition2(drzewo, ojciec):
             przeplyw2(drzewo, ojciec)
             print "-x{0} = 0".format(ojciec.name)
             
-def condition2_all(drzewo, ojciec):
+def Flow_conservation_equations(drzewo, ojciec):
     condition2(drzewo, ojciec)
     if ojciec.isNode()==True:
         A=ojciec.getChilds()
         l=len(A)
         for i in range(l):
-            condition2_all(drzewo, A[i])
+            Flow_conservation_equations(drzewo, A[i])
     else:
         print "x{1}_{0}_{2} - x{0} = 0".format(ojciec.name, ojciec.__parent__.name, drzewo)
 
 def subject_to(tab1, tab2):
     print
     print "Subject to"
-    condition1_all(0, tab1)
+    Capacity_constraints(0, tab1)
     print 
     print
-    condition1_all(1, tab2)
+    Capacity_constraints(1, tab2)
     print
     print
-    condition2_all(0, tab1)
+    Flow_conservation_equations(0, tab1)
     print
     print
-    condition2_all(1, tab2)
+    Flow_conservation_equations(1, tab2)
 
     
 #Bounds
